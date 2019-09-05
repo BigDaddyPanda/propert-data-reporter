@@ -1,0 +1,38 @@
+{
+    "editor.formatOnSave": true,
+    // Enable per-language
+    "[javascript]": {
+        "editor.formatOnSave": true
+    },
+    "[json]": {
+        "editor.formatOnSave": true
+    },
+    "emmet.syntaxProfiles": {
+        "javascript": "jsx",
+        "xml": {
+            "attr_quotes": "single"
+        }
+    },
+    "editor.lineHeight": 22,
+    "javascript.validate.enable": false,
+    "workbench.editor.enablePreview": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "prettier.trailingComma": "all",
+    "bracketPairColorizer.forceIterationColorCycle": true,
+    "editor.fontWeight": "500",
+    "editor.fontLigatures": true,
+    "editor.letterSpacing": 0.5,
+    "editor.cursorWidth": 5,
+    "editor.renderWhitespace": "all",
+    "editor.snippetSuggestions": "top",
+    "editor.glyphMargin": true,
+    "editor.minimap.enabled": false,
+    "terminal.integrated.fontWeight": "400",
+    "files.trimTrailingWhitespace": true,
+    "files.trimFinalNewlines": true,
+    "terminal.integrated.macOptionIsMeta": true,
+    "prettier.bracketSpacing": true,
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontWeightBold": "700",
+    "terminal.integrated.lineHeight": 1.6
+}
