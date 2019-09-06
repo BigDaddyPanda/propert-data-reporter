@@ -1,16 +1,10 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 // @flow
-// es-lint
+
 import * as React from "react";
 import { NavLink, withRouter } from "react-router-dom";
+import { Grid, List, RouterContextProvider, Site } from "tabler-react";
 
-import {
-  Site,
-  Nav,
-  Grid,
-  List,
-  Button,
-  RouterContextProvider,
-} from "tabler-react";
 
 import type { NotificationProps } from "tabler-react";
 
@@ -19,25 +13,25 @@ type Props = {|
 |};
 
 type State = {|
-  notificationsObjects: Array<NotificationProps>,
+  notificationsObjects: Array < NotificationProps >,
 |};
 
 type subNavItem = {|
   +value: string,
-  +to?: string,
-  +icon?: string,
-  +LinkComponent?: React.ElementType,
-  +useExact?: boolean,
+  +to ?: string,
+  +icon ?: string,
+  +LinkComponent ?: React.ElementType,
+  +useExact ?: boolean,
 |};
 
 type navItem = {|
   +value: string,
-  +to?: string,
-  +icon?: string,
-  +active?: boolean,
-  +LinkComponent?: React.ElementType,
-  +subItems?: Array<subNavItem>,
-  +useExact?: boolean,
+  +to ?: string,
+  +icon ?: string,
+  +active ?: boolean,
+  +LinkComponent ?: React.ElementType,
+  +subItems ?: Array < subNavItem >,
+  +useExact ?: boolean,
 |};
 
 const navBarItems: Array<navItem> = [
@@ -49,21 +43,10 @@ const navBarItems: Array<navItem> = [
     useExact: true,
   },
   {
-    value: "Interface",
-    icon: "box",
-    subItems: [
-      {
-        value: "Cards Design",
-        to: "/cards",
-        LinkComponent: withRouter(NavLink),
-      },
-      { value: "Charts", to: "/charts", LinkComponent: withRouter(NavLink) },
-      {
-        value: "Pricing Cards",
-        to: "/pricing-cards",
-        LinkComponent: withRouter(NavLink),
-      },
-    ],
+    value: "Pricing",
+    to: "/pricing",
+    icon: "dollar-sign",
+    LinkComponent: withRouter(NavLink),
   },
   {
     value: "Components",
@@ -131,15 +114,12 @@ const navBarItems: Array<navItem> = [
 const accountDropdownProps = {
   avatarURL: "./demo/faces/female/25.jpg",
   name: "Jane Pearson",
-  description: "Administrator",
   options: [
     { icon: "user", value: "Profile" },
     { icon: "settings", value: "Settings" },
-    { icon: "mail", value: "Inbox", badge: "6" },
-    { icon: "send", value: "Message" },
     { isDivider: true },
     { icon: "help-circle", value: "Need help?" },
-    { icon: "log-out", value: "Sign out" },
+    { icon: "log-out", value: "Sign out", to: "/log-out" },
   ],
 };
 
@@ -181,82 +161,20 @@ class SiteWrapper extends React.Component<Props, State> {
   };
 
   render(): React.Node {
-    const notificationsObjects = this.state.notificationsObjects || [];
-    const unreadCount = this.state.notificationsObjects.reduce(
-      (a, v) => a || v.unread,
-      false
-    );
     return (
       <Site.Wrapper
         headerProps={{
           href: "/",
           alt: "Tabler React",
-          imageURL: "./static/img/brand icon.png",
-          navItems: (
-            <Nav.Item type="div" className="d-none d-md-flex">
-              <Button
-                href="https://github.com/tabler/tabler-react"
-                target="_blank"
-                outline
-                size="sm"
-                RootComponent="a"
-                color="primary"
-              >
-                Source code
-              </Button>
-            </Nav.Item>
-          ),
-          notificationsTray: {
-            notificationsObjects,
-            markAllAsRead: () =>
-              this.setState(
-                () => ({
-                  notificationsObjects: this.state.notificationsObjects.map(
-                    v => ({ ...v, unread: false })
-                  ),
-                }),
-                () =>
-                  setTimeout(
-                    () =>
-                      this.setState({
-                        notificationsObjects: this.state.notificationsObjects.map(
-                          v => ({ ...v, unread: true })
-                        ),
-                      }),
-                    5000
-                  )
-              ),
-            unread: unreadCount,
-          },
-          accountDropdown: accountDropdownProps,
+          imageURL: "./demo/brand/full-logo.png",
+          accountDropdown: accountDropdownProps
         }}
         navProps={{ itemsObjects: navBarItems }}
         routerContextComponentType={withRouter(RouterContextProvider)}
         footerProps={{
-          links: [
-            <a href="#">First Link</a>,
-            <a href="#">Second Link</a>,
-            <a href="#">Third Link</a>,
-            <a href="#">Fourth Link</a>,
-            <a href="#">Five Link</a>,
-            <a href="#">Sixth Link</a>,
-            <a href="#">Seventh Link</a>,
-            <a href="#">Eigth Link</a>,
-          ],
-          note:
-            "Premium and Open Source dashboard template with responsive and high quality UI. For Free!",
           copyright: (
             <React.Fragment>
-              Copyright © 2019
-              <a href="."> Tabler-react</a>. Theme by
-              <a
-                href="https://codecalm.net"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {" "}
-                codecalm.net
-              </a>{" "}
+              Copyright © {new Date().getFullYear()}.
               All rights reserved.
             </React.Fragment>
           ),
@@ -271,17 +189,6 @@ class SiteWrapper extends React.Component<Props, State> {
                     <a href="./faq.html">FAQ</a>
                   </List.Item>
                 </List>
-              </Grid.Col>
-              <Grid.Col auto={true}>
-                <Button
-                  href="https://github.com/tabler/tabler-react"
-                  size="sm"
-                  outline
-                  color="primary"
-                  RootComponent="a"
-                >
-                  Source code
-                </Button>
               </Grid.Col>
             </React.Fragment>
           ),

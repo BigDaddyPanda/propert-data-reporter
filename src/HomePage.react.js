@@ -1,4 +1,5 @@
 // @flow
+/* eslint-disable jsx-a11y/anchor-is-valid */
 
 import * as React from "react";
 
@@ -142,7 +143,7 @@ function Home() {
                 }}
                 tooltip={{
                   format: {
-                    title: function(x) {
+                    title: function (x) {
                       return "";
                     },
                   },
@@ -627,7 +628,7 @@ function Home() {
                       }}
                       tooltip={{
                         format: {
-                          title: function(x) {
+                          title: function (x) {
                             return "";
                           },
                         },
@@ -689,7 +690,7 @@ function Home() {
                       }}
                       tooltip={{
                         format: {
-                          title: function(x) {
+                          title: function (x) {
                             return "";
                           },
                         },
@@ -751,7 +752,7 @@ function Home() {
                       }}
                       tooltip={{
                         format: {
-                          title: function(x) {
+                          title: function (x) {
                             return "";
                           },
                         },
@@ -813,7 +814,7 @@ function Home() {
                       }}
                       tooltip={{
                         format: {
-                          title: function(x) {
+                          title: function (x) {
                             return "";
                           },
                         },

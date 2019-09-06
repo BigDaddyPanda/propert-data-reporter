@@ -3,17 +3,27 @@
   "homepage": "https://tabler-react.com",
   "version": "0.0.1",
   "dependencies": {
+    "axios": "^0.19.0",
+    "bootstrap": "^4.3.1",
+    "classnames": "^2.2.6",
     "d3-scale": "^3.0.0",
     "formik": "^1.0.2",
+    "jwt-decode": "^2.2.0",
+    "leaflet": "^1.5.1",
+    "leaflet-control-geocoder": "^1.9.0",
     "prop-types": "^15.6.1",
     "react": "^16.2.0",
     "react-c3js": "^0.1.20",
     "react-dom": "^16.2.0",
     "react-google-maps": "^9.4.5",
-    "react-router-dom": "^5.0.0",
+    "react-leaflet": "^2.4.0",
+    "react-redux": "^7.1.1",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "^3.1.1",
     "react-simple-maps": "^0.12.0",
     "react-syntax-highlighter": "^10.0.0",
+    "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "refractor": "^2.6.1",
     "tabler-react": "^1.30.1"
   },
@@ -28,7 +38,7 @@
     "deploy": "gh-pages -d build"
   },
   "devDependencies": {
-    "webpack": "^4.39.3"
+    "eslint-plugin-react": "^7.14.3"
   },
   "browserslist": [
     ">0.2%",

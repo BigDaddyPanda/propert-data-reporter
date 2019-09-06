@@ -13,26 +13,26 @@
             "attr_quotes": "single"
         }
     },
+    "javascript.showUnused.enabled": true,
     "editor.lineHeight": 22,
     "javascript.validate.enable": false,
     "workbench.editor.enablePreview": false,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "prettier.trailingComma": "all",
     "bracketPairColorizer.forceIterationColorCycle": true,
-    "editor.fontWeight": "500",
-    "editor.fontLigatures": true,
-    "editor.letterSpacing": 0.5,
-    "editor.cursorWidth": 5,
     "editor.renderWhitespace": "all",
     "editor.snippetSuggestions": "top",
     "editor.glyphMargin": true,
-    "editor.minimap.enabled": false,
-    "terminal.integrated.fontWeight": "400",
+    "editor.minimap.enabled": true,
     "files.trimTrailingWhitespace": true,
     "files.trimFinalNewlines": true,
-    "terminal.integrated.macOptionIsMeta": true,
     "prettier.bracketSpacing": true,
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.fontWeightBold": "700",
-    "terminal.integrated.lineHeight": 1.6
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/backend": true,
+    }
 }
