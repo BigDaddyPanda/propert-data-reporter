@@ -4,6 +4,8 @@
 import * as React from "react";
 import { NavLink, withRouter } from "react-router-dom";
 import { Grid, List, RouterContextProvider, Site } from "tabler-react";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 
 import type { NotificationProps } from "tabler-react";
@@ -44,76 +46,21 @@ const navBarItems: Array<navItem> = [
   },
   {
     value: "Pricing",
-    to: "/pricing",
     icon: "dollar-sign",
+    to: "/pricing",
     LinkComponent: withRouter(NavLink),
   },
   {
-    value: "Components",
-    icon: "calendar",
-    subItems: [
-      { value: "Maps", to: "/maps", LinkComponent: withRouter(NavLink) },
-      { value: "Icons", to: "/icons", LinkComponent: withRouter(NavLink) },
-      { value: "Store", to: "/store", LinkComponent: withRouter(NavLink) },
-      { value: "Blog", to: "/blog", LinkComponent: withRouter(NavLink) },
-    ],
-  },
-  {
-    value: "Pages",
+    value: "My Reports",
     icon: "file",
-    subItems: [
-      { value: "Profile", to: "/profile", LinkComponent: withRouter(NavLink) },
-      { value: "Login", to: "/login", LinkComponent: withRouter(NavLink) },
-      {
-        value: "Register",
-        to: "/register",
-        LinkComponent: withRouter(NavLink),
-      },
-      {
-        value: "Forgot password",
-        to: "/forgot-password",
-        LinkComponent: withRouter(NavLink),
-      },
-      { value: "400 error", to: "/400", LinkComponent: withRouter(NavLink) },
-      { value: "401 error", to: "/401", LinkComponent: withRouter(NavLink) },
-      { value: "403 error", to: "/403", LinkComponent: withRouter(NavLink) },
-      { value: "404 error", to: "/404", LinkComponent: withRouter(NavLink) },
-      { value: "500 error", to: "/500", LinkComponent: withRouter(NavLink) },
-      { value: "503 error", to: "/503", LinkComponent: withRouter(NavLink) },
-      { value: "Email", to: "/email", LinkComponent: withRouter(NavLink) },
-      {
-        value: "Empty page",
-        to: "/empty-page",
-        LinkComponent: withRouter(NavLink),
-      },
-      { value: "RTL", to: "/rtl", LinkComponent: withRouter(NavLink) },
-    ],
-  },
-  {
-    value: "Forms",
-    to: "/form-elements",
-    icon: "check-square",
+    to: "/reports",
     LinkComponent: withRouter(NavLink),
-  },
-  {
-    value: "Gallery",
-    to: "/gallery",
-    icon: "image",
-    LinkComponent: withRouter(NavLink),
-  },
-  {
-    icon: "file-text",
-    value: "Documentation",
-    to:
-      process.env.NODE_ENV === "production"
-        ? "https://tabler.github.io/tabler-react/documentation"
-        : "/documentation",
-  },
+  }
 ];
 
-const accountDropdownProps = {
-  avatarURL: "./demo/faces/female/25.jpg",
-  name: "Jane Pearson",
+const accountDropdownProps = e => ({
+  avatarURL: e.auth.user.avatar,
+  name: e.auth.user.name,
   options: [
     { icon: "user", value: "Profile" },
     { icon: "settings", value: "Settings" },
@@ -121,7 +68,7 @@ const accountDropdownProps = {
     { icon: "help-circle", value: "Need help?" },
     { icon: "log-out", value: "Sign out", to: "/log-out" },
   ],
-};
+});
 
 class SiteWrapper extends React.Component<Props, State> {
   state = {
@@ -167,7 +114,7 @@ class SiteWrapper extends React.Component<Props, State> {
           href: "/",
           alt: "Tabler React",
           imageURL: "./demo/brand/full-logo.png",
-          accountDropdown: accountDropdownProps
+          accountDropdown: accountDropdownProps(this.props)
         }}
         navProps={{ itemsObjects: navBarItems }}
         routerContextComponentType={withRouter(RouterContextProvider)}
@@ -200,4 +147,15 @@ class SiteWrapper extends React.Component<Props, State> {
   }
 }
 
-export default SiteWrapper;
+
+SiteWrapper.propTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+})
+
+export default connect(mapStateToProps,{})(SiteWrapper)

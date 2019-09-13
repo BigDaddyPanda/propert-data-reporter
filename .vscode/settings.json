@@ -13,7 +13,6 @@
             "attr_quotes": "single"
         }
     },
-    "javascript.showUnused.enabled": true,
     "editor.lineHeight": 22,
     "javascript.validate.enable": false,
     "workbench.editor.enablePreview": false,

@@ -1,17 +1,21 @@
-// @flow
-
 import { Formik } from "formik";
-import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { ForgotPasswordPage as TablerForgotPasswordPage } from "tabler-react";
-import { forgotPassword } from '../actions/authentication';
+import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
+import { registerUser } from '../actions/authentication';
+// import classnames from 'classnames';
+import { RegisterPage as TablerRegisterPage } from "tabler-react";
 
-class ForgotPasswordPage extends Component {
+class Register extends Component {
+
   constructor() {
     super();
     this.state = {
+      name: '',
       email: '',
+      password: '',
+      password_confirm: '',
       errors: {}
     }
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,14 +29,9 @@ class ForgotPasswordPage extends Component {
   }
 
   handleSubmit(e) {
-    const email = this.state.email;
-    this.props.forgotPassword(email);
-  }
+    console.log(e);
 
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/');
-    }
+    this.props.registerUser(e, this.props.history);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -43,6 +42,12 @@ class ForgotPasswordPage extends Component {
       this.setState({
         errors: nextProps.errors
       });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/');
     }
   }
 
@@ -69,6 +74,8 @@ class ForgotPasswordPage extends Component {
           values,
           { setSubmitting, setErrors /* setValues and other goodies */ }
         ) => {
+          console.log("values", values);
+
           this.handleSubmit(values);
         }}
         render={({
@@ -81,7 +88,7 @@ class ForgotPasswordPage extends Component {
           isSubmitting,
         }) => (
             <div>
-              <TablerForgotPasswordPage
+              <TablerRegisterPage
                 onSubmit={handleSubmit}
                 onChange={handleChange}
                 onBlur={handleBlur}
@@ -91,7 +98,7 @@ class ForgotPasswordPage extends Component {
               />
               <div className="text-center full-width">
                 <a href="./login">Login</a>&nbsp;&nbsp;|&nbsp;&nbsp;
-                <a href="./register">Register</a>
+                <a href="./forgot-password">Forgot your Password?</a>
               </div>
             </div>
           )}
@@ -99,17 +106,14 @@ class ForgotPasswordPage extends Component {
     )
   }
 }
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
 
-
-ForgotPasswordPage.propTypes = {
-  forgotPassword: PropTypes.func.isRequired,
-  auth: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
-}
-
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
-})
+});
 
-export default connect(mapStateToProps, { forgotPassword })(ForgotPasswordPage)
+export default connect(mapStateToProps, { registerUser })(withRouter(Register))
